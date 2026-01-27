@@ -123,3 +123,10 @@ li {
   padding: 50px 0;
   text-align: center;
 }
+
+#mainvisual img {
+  width: 100%;
+  height: 80vh; /* 画面の高さの80%を使う */
+  object-fit: cover; /* 画像を切り抜いてフィットさせる */
+  object-position: center; /* 真ん中を表示 */
+}
