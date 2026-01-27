@@ -71,8 +71,9 @@ li {
 
 #mainvisual img {
   width: 100%;
-  height: 600px;
-  object-fit: cover; /* 画像を画面いっぱいに綺麗に切り取る */
+  height: 80vh; /* 画面の高さの80%を使う */
+  object-fit: cover; /* 画像を切り抜いてフィットさせる */
+  object-position: center; /* 真ん中を表示 */
 }
 
 /* About セクション */
@@ -124,12 +125,7 @@ li {
   text-align: center;
 }
 
-#mainvisual img {
-  width: 100%;
-  height: 80vh; /* 画面の高さの80%を使う */
-  object-fit: cover; /* 画像を切り抜いてフィットさせる */
-  object-position: center; /* 真ん中を表示 */
-}
+
 /* Bicycleのリストにホバー（マウスを乗せる）した時の動き */
 #bicycle li {
   transition: transform 0.3s ease;
