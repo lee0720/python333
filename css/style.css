@@ -71,9 +71,8 @@ li {
 
 #mainvisual img {
   width: 100%;
-  height: 80vh; /* 画面の高さの80%を使う */
-  object-fit: cover; /* 画像を切り抜いてフィットさせる */
-  object-position: center; /* 真ん中を表示 */
+  height: 600px;
+  object-fit: cover; /* 画像を画面いっぱいに綺麗に切り取る */
 }
 
 /* About セクション */
@@ -102,16 +101,10 @@ li {
   gap: 20px;
 }
 
-
-/* Bicycleのリストにホバー（マウスを乗せる）した時の動き */
 #bicycle li {
-  transition: transform 0.3s ease;
+  width: 31%;
+  text-align: center;
 }
-
-#bicycle li:hover {
-  transform: translateY(-10px); /* 上に10px浮く */
-}
-
 
 #bicycle img {
   border-radius: 8px;
@@ -129,11 +122,4 @@ li {
   font-size: 0.8rem;
   padding: 50px 0;
   text-align: center;
-}
-
-
-.site-title, .section-title, .content-title {
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 0.1em; /* 文字の間隔を少し広げる */
-  text-transform: uppercase; /* 強制的に大文字にする */
 }
