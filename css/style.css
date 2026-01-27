@@ -130,3 +130,11 @@ li {
   object-fit: cover; /* 画像を切り抜いてフィットさせる */
   object-position: center; /* 真ん中を表示 */
 }
+/* Bicycleのリストにホバー（マウスを乗せる）した時の動き */
+#bicycle li {
+  transition: transform 0.3s ease;
+}
+
+#bicycle li:hover {
+  transform: translateY(-10px); /* 上に10px浮く */
+}
