@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+/* 基本設定 */
+html {
+  font-size: 100%;
+}
+body {
+  color: #333;
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+li {
+  list-style: none;
+}
+
+/* 共通クラス：幅の制限と中央寄せ */
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin: 80px 0 40px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: #333;
+  margin: 10px auto 0;
+}
+
+/* ヘッダー */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+
+#header ul {
+  display: flex;
+}
+
+#header li {
+  margin-left: 30px;
+}
+
+#header li a:hover {
+  opacity: 0.7;
+}
+
+/* メインビジュアル */
+#mainvisual {
+  margin-bottom: 80px;
+}
+
+#mainvisual img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover; /* 画像を画面いっぱいに綺麗に切り取る */
+}
+
+/* About セクション */
+#about .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px; /* 画像とテキストの間隔 */
+}
+
+#about img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%; /* 丸く切り抜く */
+  object-fit: cover;
+}
+
+#about .text {
+  flex: 1;
+}
+
+/* Bicycle セクション */
+#bicycle ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+#bicycle li {
+  width: 31%;
+  text-align: center;
+}
+
+#bicycle img {
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.content-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* フッター */
+#footer {
+  font-size: 0.8rem;
+  padding: 50px 0;
+  text-align: center;
+}
