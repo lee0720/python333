@@ -1,125 +1,157 @@
-@charset "UTF-8";
-
+style.css
 /* 基本設定 */
-html {
-  font-size: 100%;
-}
 body {
-  color: #333;
-  line-height: 1.7;
-  letter-spacing: 0.05em;
-}
-a {
-  text-decoration: none;
-  color: #333;
-}
-img {
-  max-width: 100%;
-  vertical-align: bottom;
-}
-li {
-  list-style: none;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
 }
 
-/* 共通クラス：幅の制限と中央寄せ */
-.wrapper {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 4%;
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
 }
 
-.section-title {
-  font-size: 2rem;
-  text-align: center;
-  margin: 80px 0 40px;
-  position: relative;
+/* ヘッダー・フッター */
+header, footer {
+    text-align: center;
+    padding: 20px 0;
 }
 
-.section-title::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 3px;
-  background-color: #333;
-  margin: 10px auto 0;
+/* プロフィールカード */
+.profile-card {
+    background: #fff;
+    padding: 40px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-/* ヘッダー */
-#header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
+.avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+    margin-bottom: 20px;
 }
 
-#header ul {
-  display: flex;
+h2 { margin-bottom: 5px; }
+.tagline {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-#header li {
-  margin-left: 30px;
+/* スキルリスト */
+.skills ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-#header li a:hover {
-  opacity: 0.7;
+.skills li {
+    background: #e9ecef;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
 }
 
-/* メインビジュアル */
-#mainvisual {
-  margin-bottom: 80px;
+/* ボタンデザイン */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-#mainvisual img {
-  width: 100%;
-  height: 600px;
-  object-fit: cover; /* 画像を画面いっぱいに綺麗に切り取る */
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    transition: 0.3s;
 }
 
-/* About セクション */
-#about .content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px; /* 画像とテキストの間隔 */
+.btn:hover {
+    background: #f0f0f0;
 }
 
-#about img {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%; /* 丸く切り抜く */
-  object-fit: cover;
+.btn.primary {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
 }
 
-#about .text {
-  flex: 1;
+.btn.primary:hover {
+    background: #0056b3;
+}
+/* 制作実績セクションのスタイル */
+.works {
+    margin-top: 40px;
 }
 
-/* Bicycle セクション */
-#bicycle ul {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+.works h3 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-#bicycle li {
-  width: 31%;
-  text-align: center;
+/* グリッドの設定 */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 横幅に合わせて自動調整 */
+    gap: 20px;
 }
 
-#bicycle img {
-  border-radius: 8px;
-  margin-bottom: 15px;
+/* 各作品のカード */
+.work-item {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden; /* 画像の角を丸めるため */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
 }
 
-.content-title {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 10px;
+.work-item:hover {
+    transform: translateY(-5px); /* ホバー時に少し浮かす */
 }
 
-/* フッター */
-#footer {
-  font-size: 0.8rem;
-  padding: 50px 0;
-  text-align: center;
+.work-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.work-info {
+    padding: 15px;
+}
+
+.work-info h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+}
+
+.work-info p {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.view-link {
+    font-size: 0.8em;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-link:hover {
+    text-decoration: underline;
 }
