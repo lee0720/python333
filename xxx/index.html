@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キリスト・プログラム — 聖書に基づく悩み相談</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <h1 class="logo">キリスト・プログラム</h1>
+        <p class="tagline">あなたの悩みに、聖書の言葉で寄り添います</p>
+        <button type="button" class="btn-settings" id="btnSettings" aria-label="設定">⚙️</button>
+      </div>
+    </header>
 
+    <main class="main">
+      <div class="welcome" id="welcome">
+        <p class="welcome-text">悩みや不安を入力してください。<br>聖書の引用とともに、解決のヒントをお伝えします。</p>
+        <p class="welcome-hint">例：「将来が不安です」「人間関係で悩んでいます」</p>
+      </div>
+
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <div class="input-area">
+        <textarea
+          id="userInput"
+          placeholder="悩みや質問を入力..."
+          rows="2"
+        ></textarea>
+        <button type="button" class="btn-send" id="btnSend" aria-label="送信">
+          <span class="btn-send-text">送信</span>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- 設定モーダル -->
+  <div class="modal" id="settingsModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <h2>設定</h2>
+      <label>
+        <span>OpenAI API キー（任意）</span>
+        <input type="password" id="apiKeyInput" placeholder="sk-...">
+      </label>
+      <p class="modal-note">APIキーを設定すると、より自然な対話が可能になります。未設定の場合は聖書の引用によるデモ応答になります。</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="btnCloseSettings">閉じる</button>
+        <button type="button" class="btn-primary" id="btnSaveSettings">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

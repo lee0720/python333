@@ -1,0 +1,354 @@
+/* キリスト・プログラム — 聖書に基づく悩み相談 */
+
+:root {
+  --bg-page: #f8f6f1;
+  --bg-header: #2c3e50;
+  --bg-card: #fffef9;
+  --text-primary: #2c3e50;
+  --text-secondary: #5d6d7e;
+  --accent: #8b6914;
+  --accent-soft: #c9a227;
+  --border: #e8e4dc;
+  --shadow: rgba(44, 62, 80, 0.08);
+  --verse-bg: #f5f0e6;
+  --user-msg-bg: #e8e4dc;
+  --font-serif: "Noto Serif JP", "Yu Mincho", serif;
+  --font-display: "Cormorant Garamond", "Noto Serif JP", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-serif);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ヘッダー */
+.header {
+  background: var(--bg-header);
+  color: #fff;
+  padding: 1.25rem 1.5rem;
+  position: relative;
+}
+
+.header-inner {
+  position: relative;
+}
+
+.logo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.tagline {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.btn-settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  opacity: 0.85;
+}
+
+.btn-settings:hover {
+  opacity: 1;
+}
+
+/* メイン */
+.main {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.welcome {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary);
+}
+
+.welcome-text {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.welcome-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.chat-messages {
+  flex: 1;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* メッセージ */
+.msg {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  animation: msgIn 0.3s ease;
+}
+
+@keyframes msgIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.msg.user .msg-avatar {
+  background: var(--user-msg-bg);
+}
+
+.msg.assistant .msg-avatar {
+  background: var(--accent-soft);
+  color: #fff;
+}
+
+.msg-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.msg-text {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.msg.user .msg-text {
+  background: var(--user-msg-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border-top-right-radius: 4px;
+}
+
+.msg.assistant .msg-text {
+  padding: 0.25rem 0;
+}
+
+.verse-block {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--verse-bg);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+
+.verse-ref {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.msg-loading .msg-text::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--accent-soft);
+  animation: blink 0.8s ease infinite;
+  vertical-align: -0.15em;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+
+/* 入力エリア */
+.input-area {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  padding-top: 0.5rem;
+}
+
+.input-area textarea {
+  flex: 1;
+  min-height: 52px;
+  max-height: 120px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  resize: none;
+  background: var(--bg-card);
+}
+
+.input-area textarea:focus {
+  outline: none;
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.2);
+}
+
+.btn-send {
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-send:hover {
+  background: var(--accent-soft);
+}
+
+.btn-send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* モーダル */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.2s;
+}
+
+.modal[aria-hidden="false"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px var(--shadow);
+  width: 100%;
+  max-width: 400px;
+}
+
+.modal-content h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.modal-content label span {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.modal-content input[type="password"] {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.modal-note {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn-secondary:hover,
+.btn-primary:hover {
+  opacity: 0.9;
+}
