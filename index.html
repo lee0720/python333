@@ -1,85 +1,99 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio | Profile</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>家計簿</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <header>
-        <h1>My Profile</h1>
+  <div class="app">
+    <header class="header">
+      <h1>家計簿</h1>
+      <div class="balance-card">
+        <span class="balance-label">残高</span>
+        <span class="balance-amount" id="balanceAmount">¥0</span>
+      </div>
     </header>
 
-    <main class="container">
-        <section class="profile-card">
-            <div class="avatar">
-                <img src="profile.jpg" alt="プロフィール写真">
-            </div>
-            <h2>櫻井一利 / Your Name</h2>
-            <p class="tagline">Web Designer / Developer</p>
-            <p class="bio">
-                はじめまして！宜しくお願いします！！pythonを主に使ってプログラミングを学習しています。人生、楽しんだ者勝ち！！Pythonを使って自動化ツールを作れるようになりたい
-            </p>
-        </section>
+    <main class="main">
+      <section class="summary-cards">
+        <div class="summary-card income">
+          <span class="summary-label">今月の収入</span>
+          <span class="summary-value" id="monthlyIncome">¥0</span>
+        </div>
+        <div class="summary-card expense">
+          <span class="summary-label">今月の支出</span>
+          <span class="summary-value" id="monthlyExpense">¥0</span>
+        </div>
+      </section>
 
-        <section class="skills">
-            <h3>Skills</h3>
-            <ul>
-                <li>HTML / CSS</li>
-                <li>JavaScript</li>
-                <li>PHP</li>
-                <li>Python</li>
-            </ul>
-        </section>
-<section class="works">
-            <h3>Works</h3>
-            <div class="works-grid">
-                <div class="work-item">
-                    <img src="board.png" alt="制作物1">
-                    <div class="work-info">
-                        <h4>行先掲示板</h4>
-                        <p>pythonとhtmlを使用。DB勉強中。</p>
-                        <a href="#" class="view-link">View More →</a>
-                    </div>
-                </div>
+      <section class="form-section">
+        <h2>取引を登録</h2>
+        <form id="entryForm" class="entry-form">
+          <div class="form-row type-row">
+            <label><input type="radio" name="type" value="income" id="typeIncome"> 収入</label>
+            <label><input type="radio" name="type" value="expense" id="typeExpense" checked> 支出</label>
+          </div>
+          <div class="form-row">
+            <label for="date">日付</label>
+            <input type="date" id="date" required>
+          </div>
+          <div class="form-row">
+            <label for="category">カテゴリ</label>
+            <select id="category">
+              <optgroup label="支出" id="expenseCategories">
+                <option value="食費">食費</option>
+                <option value="日用品">日用品</option>
+                <option value="交通費">交通費</option>
+                <option value="光熱費">光熱費</option>
+                <option value="住居費">住居費</option>
+                <option value="通信費">通信費</option>
+                <option value="娯楽">娯楽</option>
+                <option value="医療">医療</option>
+                <option value="その他">その他</option>
+              </optgroup>
+              <optgroup label="収入" id="incomeCategories" style="display:none">
+                <option value="給与">給与</option>
+                <option value="副業">副業</option>
+                <option value="賞与">賞与</option>
+                <option value="その他">その他</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="amount">金額（円）</label>
+            <input type="number" id="amount" min="1" placeholder="1000" required>
+          </div>
+          <div class="form-row">
+            <label for="memo">メモ</label>
+            <input type="text" id="memo" placeholder="任意">
+          </div>
+          <button type="submit" class="btn btn-primary">登録する</button>
+        </form>
+      </section>
 
-                <div class="work-item">
-                    <img src="roop.png" alt="制作物2">
-                    <div class="work-info">
-                        <h4>言葉を繰り返すプログラム</h4>
-                        <p>４つの言葉を延々と繰り返す。</p>
-                        <a href="#" class="view-link">View More →</a>
-                    </div>
-                </div>
-
-                <div class="work-item">
-                    <img src="star.png" alt="制作物3">
-                    <div class="work-info">
-                        <h4>星座占い</h4>
-                        <p>tkinterを使った簡単なアプリ</p>
-                        <a href="#" class="view-link">View More →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="links">
-            <h3>Contact & Links</h3>
-            <div class="button-group">
-                <a href="#" class="btn">GitHub</a>
-                <a href="#" class="btn">X (Twitter)</a>
-                <a href="mailto:example@gmail.com" class="btn primary">Mail Me</a>
-            </div>
-        </section>
-         <h4>亀がお絵描きするプログラム</h4>
-                        <p>右矢印を押すと、動作します。</p>
- <iframe src="https://trinket.io/embed/python/030500dc6d1c" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+      <section class="list-section">
+        <div class="list-header">
+          <h2>取引一覧</h2>
+          <div class="filter-row">
+            <select id="filterMonth">
+              <option value="">全期間</option>
+            </select>
+            <select id="filterType">
+              <option value="">すべて</option>
+              <option value="income">収入</option>
+              <option value="expense">支出</option>
+            </select>
+          </div>
+        </div>
+        <ul class="entry-list" id="entryList"></ul>
+      </section>
     </main>
-
-    <footer>
-        <p>&copy; 2026 Your Name</p>
-    </footer>
-
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>
