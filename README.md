@@ -1,32 +1,37 @@
-# 家計簿アプリ
+# Portfolio
 
-収入・支出を記録し、残高と月別集計を確認できるWebアプリです。データはブラウザのローカルストレージに保存されます。
+個人のポートフォリオ用Webページです。
 
-## 機能
+## 構成
 
-- **収入・支出の登録** … 日付・カテゴリ・金額・メモを入力
-- **残高表示** … 全期間の収入合計 − 支出合計
-- **今月の収入・支出** … 当月の集計を表示
-- **取引一覧** … 月・種別で絞り込み可能、削除ボタン付き
-- **データの永続化** … ブラウザを閉じてもデータは保持（LocalStorage）
+- **index.html** … トップページ（About / Skills / Works / Contact）
+- **styles.css** … スタイルシート
 
-## 使い方
+## ローカルで確認
 
-1. `index.html` をブラウザで開く（ダブルクリックまたは「ファイルを開く」）
-2. または簡易サーバーで起動する場合:
-   ```bash
-   cd kakeibo-app
-   python3 -m http.server 8000
-   ```
-   ブラウザで http://localhost:8000 を開く
+ブラウザで `index.html` を開くか、簡易サーバーで表示できます。
 
-## ファイル構成
+```bash
+# Python 3
+python3 -m http.server 8000
 
-- `index.html` … 画面の構造
-- `style.css` … 見た目
-- `app.js` … 登録・一覧・集計の処理
+# ブラウザで http://localhost:8000 を開く
+```
 
-## カテゴリ
+## GitHub Pages で公開する場合
 
-- **支出**: 食費、日用品、交通費、光熱費、住居費、通信費、娯楽、医療、その他
-- **収入**: 給与、副業、賞与、その他
+1. このリポジトリを GitHub にプッシュする
+2. リポジトリの **Settings** → **Pages**
+3. **Source** で「Deploy from a branch」を選択
+4. **Branch** で `main`（または `master`）と `/ (root)` を選択して保存
+
+しばらくすると `https://<ユーザー名>.github.io/<リポジトリ名>/` で公開されます。
+
+## カスタマイズ
+
+- **About** … `index.html` の「about」セクションのテキストを編集
+- **Skills** … スキル名・説明を追加・変更
+- **Works** … プロジェクト名・説明・リンク・画像（`work-placeholder` を `<img>` に差し替え可）を編集
+- **Contact** … GitHub / Email / SNS のURLを自分のものに変更
+
+フォントは [Google Fonts - Noto Sans JP](https://fonts.google.com/specimen/Noto+Sans+JP) を使用しています。
