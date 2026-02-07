@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>簡単掲示板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📋 簡単掲示板</h1>
+      <p class="subtitle">メッセージを投稿して共有しよう</p>
+    </header>
 
+    <section class="post-form">
+      <h2>新規投稿</h2>
+      <form id="postForm">
+        <div class="form-group">
+          <label for="author">名前</label>
+          <input type="text" id="author" placeholder="名前を入力" required>
+        </div>
+        <div class="form-group">
+          <label for="title">タイトル</label>
+          <input type="text" id="title" placeholder="タイトルを入力" required>
+        </div>
+        <div class="form-group">
+          <label for="content">本文</label>
+          <textarea id="content" rows="4" placeholder="メッセージを入力" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">投稿する</button>
+      </form>
+    </section>
+
+    <section class="posts">
+      <h2>投稿一覧</h2>
+      <div id="postList"></div>
+      <p id="emptyMessage" class="empty-message">まだ投稿がありません。最初の投稿をしてみましょう！</p>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
