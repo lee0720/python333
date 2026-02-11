@@ -1,6 +1,6 @@
 /* ===== Base ===== */
 :root {
-  --color-bg: #0f1419;
+  --color-bg: #273039;
   --color-surface: #1a2332;
   --color-text: #e6edf3;
   --color-text-muted: #8b949e;
@@ -195,6 +195,28 @@ img {
   text-align: center;
   padding: var(--space-2xl) var(--space-lg);
   padding-top: 80px;
+}
+.hero {
+  min-height: 100vh;
+  background-image: url("/Users/macbook/portfolio2/images/IMG_2211.JPG");
+  background-size: cover;       /* 画面いっぱい */
+  background-position: center;  /* 中央基準 */
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(98, 94, 94, 0.45); /* 黒の半透明 */
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  color: #fff;
 }
 
 .hero-inner {
@@ -430,4 +452,33 @@ img {
   margin: 0;
   font-size: 0.875rem;
   color: var(--color-text-muted);
+}
+/* Aboutセクションのレイアウト調整 */
+.about-content {
+  display: flex;
+  flex-direction: column; /* 基本は縦並び（スマホ用） */
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.about-image img {
+  width: 200px;         /* 画像のサイズ */
+  height: 200px;
+  border-radius: 50%;   /* 丸くしたい場合 */
+  object-fit: cover;    /* 縦横比を維持 */
+  border: 3px solid #eee;
+}
+
+/* PCサイズ（768px以上）の時に横並びにする */
+@media (min-width: 768px) {
+  .about-content {
+    flex-direction: row; /* 横並びにする */
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .about-text {
+    flex: 1; /* テキストが残りの幅を埋める */
+  }
 }
