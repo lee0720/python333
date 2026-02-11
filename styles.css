@@ -198,7 +198,7 @@ img {
 }
 .hero {
   min-height: 100vh;
-  background-image: url("https://lee0720.github.io/python333/IMG_2211.JPG");
+  background-image: url("IMG_2211.JPG");
   background-size: cover;       /* 画面いっぱい */
   background-position: center;  /* 中央基準 */
   background-repeat: no-repeat;
