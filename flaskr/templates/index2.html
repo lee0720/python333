@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="coffee">
+
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
+    <title>行先掲示板</title>
+</head>
+<body class="bg-black text-white p-10">
+    <h1 class="font-mono">行先掲示板</h1>
+    <h2>行先掲示板を作ってみました。</h2>
+    <a href="{{ url_for('form')}}">編集</a>
+    <p>宜しくお願いします。</p><button class="btn btn-primary">ボタン</button>
+<button class="btn btn-outline btn-primary">枠線だけのボタン</button>
+<table class="table w-full">
+    <thead>
+      <tr>
+        <th>時刻</th>
+        <th>行先</th>
+        <th>状況</th>
+      </tr>
+    </thead>
+    <tbody>
+        <td class="font-mono">15:40</td>
+        <td>新大阪 行</td>
+        <td><span class="badge badge-success">定刻</span></td>
+      </tr>
+    </tbody>
+  </table>
+<dialog id="edit_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">データを編集</h3>
+    <div class="py-4 space-y-4">
+      <input type="text" id="edit-time" class="input input-bordered w-full" placeholder="時刻" />
+      <input type="text" id="edit-dest" class="input input-bordered w-full" placeholder="行先" />
+    </div>
+    <div class="modal-action">
+      <button class="btn btn-primary" onclick="saveData()">更新</button>
+      <button class="btn" onclick="edit_modal.close()">キャンセル</button>
+    </div>
+  </div>
+</dialog>
+
+<button class="btn" onclick="edit_modal.showModal()">編集を開く</button>
+    <!-- Open the modal using ID.showModal() method -->
+<button class="btn bttun" onclick="my_modal_1.showModal()">編集</button>
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+</body>
+
+
+
+</html>
