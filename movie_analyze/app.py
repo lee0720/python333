@@ -109,7 +109,6 @@ def plot_budget_vs_revenue(df: pd.DataFrame) -> None:
         st.info("予算・興行収入がともに 1 以上のデータがありません（選択範囲をご確認ください）。")
         return
 
-    
     fig, ax = plt.subplots(figsize=(9, 5))
     ax.scatter(d["budget"], d["revenue"], alpha=0.35)
     ax.set_xscale("log")
@@ -118,7 +117,7 @@ def plot_budget_vs_revenue(df: pd.DataFrame) -> None:
     ax.set_ylabel("興行収入（対数スケール）")
     ax.set_title("予算 vs 興行収入")
     fig.tight_layout()
-    st.pyplot(fig, use_container_width=True, clear_figure=True)
+    st.pyplot(fig, use_container_width=True)
 
 
 def plot_movies_per_year(df: pd.DataFrame) -> None:
@@ -133,7 +132,7 @@ def plot_movies_per_year(df: pd.DataFrame) -> None:
     ax.set_ylabel("本数")
     ax.set_title("年別の映画本数")
     fig.tight_layout()
-    st.pyplot(fig, use_container_width=True, clear_figure=True)
+    st.pyplot(fig, use_container_width=True)
 
 
 def plot_vote_average_hist(df: pd.DataFrame) -> None:
@@ -148,8 +147,7 @@ def plot_vote_average_hist(df: pd.DataFrame) -> None:
     ax.set_ylabel("本数")
     ax.set_title("評価の分布（vote_count >= 50）")
     fig.tight_layout()
-    st.pyplot(fig, use_container_width=True, clear_figure=True)
-    plt.close(fig)
+    st.pyplot(fig, use_container_width=True)
 
 
 def plot_runtime_hist(df: pd.DataFrame) -> None:
@@ -165,23 +163,14 @@ def plot_runtime_hist(df: pd.DataFrame) -> None:
     ax.set_ylabel("本数")
     ax.set_title("上映時間の分布")
     fig.tight_layout()
-    st.# すべての st.pyplot を以下のように書き換える st.pyplot(fig, use_container_width=True, clear_figure=True)(fig, use_container_width=True)
+    st.pyplot(fig, use_container_width=True)
 
 
-# ファイルの最後の方、グラフを表示している部分をこう書き換える
 if data.empty:
     st.warning("選択条件に一致する映画がありません。")
 else:
-    # タブを作成
-    tab1, tab2, tab3, tab4 = st.tabs(["予算vs収入", "年別本数", "評価分布", "上映時間"])
-    
-    with tab1:
-        plot_budget_vs_revenue(data)
-    with tab2:
-        plot_movies_per_year(data)
-    with tab3:
-        plot_vote_average_hist(data)
-    with tab4:
-        plot_runtime_hist(data)
-    
+    plot_budget_vs_revenue(data)
+    plot_movies_per_year(data)
+    plot_vote_average_hist(data)
+    plot_runtime_hist(data)
 
