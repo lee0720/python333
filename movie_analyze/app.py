@@ -12,7 +12,7 @@ from analyze_movies import genre_names_from_cell, load_movies
 
 
 BASE = Path(__file__).resolve().parent
-CSV_PATH = BASE / "tmdb_5000_movies.csv"
+CSV_PATH = Path("tmdb_5000_movies.csv")
 
 # macOS で日本語が崩れにくいフォント設定（環境で調整してください）
 plt.rcParams["font.family"] = [
