@@ -4,6 +4,8 @@ from __future__ import annotations
 import io
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")  # Streamlit サーバ側での描画バックエンド問題を回避
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -42,6 +44,12 @@ def load_and_prepare(csv_bytes):
         df["year"] = df["release_date"].dt.year
     df = df.dropna(subset=["year"]).copy()
     df["year"] = df["year"].astype(int)
+
+    # 必要カラムがないと KeyError で落ちるので先に検査する
+    required_cols = {"id", "title", "release_date", "genres", "budget", "revenue", "runtime", "vote_average", "vote_count"}
+    missing = sorted(required_cols - set(df.columns))
+    if missing:
+        raise ValueError(f"CSV に必要なカラムが不足しています: {missing}")
 
     # 数値列を型変換（可視化・集計用）
     for col in ["budget", "revenue", "runtime", "vote_average", "vote_count", "popularity"]:
