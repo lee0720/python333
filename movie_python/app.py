@@ -30,7 +30,6 @@ st.set_page_config(page_title="映画分析（TMDB）", layout="wide")
 st.title("TMDB 5000 映画データ分析")
 
 
-@st.cache_data(show_spinner=False)
 def load_and_prepare(csv_bytes):
     """movies_df（映画単位）と genres_long_df（映画×ジャンル単位）を作る。"""
     if csv_bytes is None:
@@ -119,6 +118,7 @@ def plot_budget_vs_revenue(df: pd.DataFrame) -> None:
         st.info("予算・興行収入がともに 1 以上のデータがありません（選択範囲をご確認ください）。")
         return
 
+    plt.close("all")
     fig, ax = plt.subplots(figsize=(9, 5))
     ax.scatter(d["budget"], d["revenue"], alpha=0.35)
     ax.set_xscale("log")
@@ -128,6 +128,7 @@ def plot_budget_vs_revenue(df: pd.DataFrame) -> None:
     ax.set_title("予算 vs 興行収入")
     fig.tight_layout()
     st.pyplot(fig)
+    plt.close(fig)
 
 
 def plot_movies_per_year(df: pd.DataFrame) -> None:
@@ -136,6 +137,7 @@ def plot_movies_per_year(df: pd.DataFrame) -> None:
         st.info("年別集計に使えるデータがありません。")
         return
 
+    plt.close("all")
     fig, ax = plt.subplots(figsize=(11, 4.5))
     ax.plot(yearly.index, yearly.values, color="darkgreen", linewidth=1.8)
     ax.set_xlabel("公開年")
@@ -143,6 +145,7 @@ def plot_movies_per_year(df: pd.DataFrame) -> None:
     ax.set_title("年別の映画本数")
     fig.tight_layout()
     st.pyplot(fig)
+    plt.close(fig)
 
 
 def plot_vote_average_hist(df: pd.DataFrame) -> None:
@@ -151,6 +154,7 @@ def plot_vote_average_hist(df: pd.DataFrame) -> None:
         st.info("vote_count >= 50 のデータがありません。")
         return
 
+    plt.close("all")
     fig, ax = plt.subplots(figsize=(9, 4.8))
     sns.histplot(d["vote_average"], bins=40, kde=True, ax=ax, color="coral")
     ax.set_xlabel("平均評価（vote_average）")
@@ -158,6 +162,7 @@ def plot_vote_average_hist(df: pd.DataFrame) -> None:
     ax.set_title("評価の分布（vote_count >= 50）")
     fig.tight_layout()
     st.pyplot(fig)
+    plt.close(fig)
 
 
 def plot_runtime_hist(df: pd.DataFrame) -> None:
@@ -167,6 +172,7 @@ def plot_runtime_hist(df: pd.DataFrame) -> None:
         st.info("上映時間の分布に使えるデータがありません。")
         return
 
+    plt.close("all")
     fig, ax = plt.subplots(figsize=(9, 4.8))
     sns.histplot(d["runtime"], bins=50, kde=True, ax=ax, color="mediumpurple")
     ax.set_xlabel("上映時間（分）")
@@ -174,6 +180,7 @@ def plot_runtime_hist(df: pd.DataFrame) -> None:
     ax.set_title("上映時間の分布")
     fig.tight_layout()
     st.pyplot(fig)
+    plt.close(fig)
 
 
 if data.empty:
