@@ -6,6 +6,7 @@ from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")  # Streamlit サーバ側での描画バックエンド問題を回避
+import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -17,16 +18,40 @@ from analyze_movies import genre_names_from_cell, load_movies
 BASE = Path(__file__).resolve().parent
 CSV_PATH = BASE / "tmdb_5000_movies.csv"
 
-# macOS で日本語が崩れにくいフォント設定（環境で調整してください）
-plt.rcParams["font.family"] = [
-    "Hiragino Sans",
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    "Meiryo",
-    "sans-serif",
-]
+def _configure_japanese_font() -> fm.FontProperties:
+    """
+    デプロイ先で日本語フォントが入っていない場合があるため、
+    見つかったフォントだけを使うようにする。
+    """
+
+    candidates = [
+        "Noto Sans CJK JP",
+        "Noto Sans JP",
+        "IPAexGothic",
+        "IPAGothic",
+        "TakaoGothic",
+        "Hiragino Sans",
+        "Yu Gothic",
+        "Meiryo",
+        "DejaVu Sans",  # 最低限（完全な日本語表示はできない場合あり）
+    ]
+
+    for name in candidates:
+        try:
+            fp = fm.FontProperties(family=name)
+            path = fm.findfont(fp, fallback_to_default=False)
+            if path:
+                return fm.FontProperties(fname=path)
+        except Exception:
+            continue
+
+    return fm.FontProperties()  # Matplotlib のデフォルトにフォールバック
+
+
+jp_prop = _configure_japanese_font()
+plt.rcParams["font.family"] = [jp_prop.get_name()]
 plt.rcParams["axes.unicode_minus"] = False
-sns.set_theme(style="whitegrid", font=plt.rcParams["font.family"][0])
+sns.set_theme(style="whitegrid", font=jp_prop.get_name())
 
 st.set_page_config(page_title="映画分析（TMDB）", layout="wide")
 st.title("TMDB 5000 映画データ分析")
@@ -35,9 +60,19 @@ st.title("TMDB 5000 映画データ分析")
 def load_and_prepare(csv_bytes):
     """movies_df（映画単位）と genres_long_df（映画×ジャンル単位）を作る。"""
     if csv_bytes is None:
-        if not CSV_PATH.exists():
-            raise FileNotFoundError(f"CSV が見つかりません: {CSV_PATH}")
-        df = load_movies(CSV_PATH)
+        # デプロイ環境ではファイル配置が想定と違うことがあるため、候補を探索
+        candidates = [
+            CSV_PATH,
+            BASE / "data" / "tmdb_5000_movies.csv",
+            BASE / "dataset" / "tmdb_5000_movies.csv",
+        ]
+        csv_path = next((p for p in candidates if p.exists()), None)
+        if csv_path is None:
+            raise FileNotFoundError(
+                "CSV が見つかりません。サイドバーから `tmdb_5000_movies.csv` をアップロードするか、"
+                "app.py と同じ場所（または data/ 配下）に配置してください。"
+            )
+        df = load_movies(csv_path)
     else:
         df = pd.read_csv(io.BytesIO(csv_bytes))
         df["release_date"] = pd.to_datetime(df["release_date"], errors="coerce")
